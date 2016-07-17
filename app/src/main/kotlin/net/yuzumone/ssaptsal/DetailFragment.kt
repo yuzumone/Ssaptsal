@@ -17,12 +17,16 @@
 
 package net.yuzumone.ssaptsal
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import net.yuzumone.ssaptsal.databinding.FragmentDetailBinding
 import org.parceler.Parcels
 
@@ -50,8 +54,17 @@ class DetailFragment: Fragment() {
                               savedInstanceState: Bundle?): View? {
         val binding = DataBindingUtil.inflate<FragmentDetailBinding>(inflater,
                 R.layout.fragment_detail, container, false)
-
         binding.item = mItem
+        binding.user.setOnClickListener {
+            val clipboard = activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            clipboard.primaryClip = ClipData.newPlainText("user", mItem!!.user)
+            Toast.makeText(activity, "Copy user!", Toast.LENGTH_SHORT).show()
+        }
+        binding.pass.setOnClickListener {
+            val clipboard = activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            clipboard.primaryClip = ClipData.newPlainText("pass", mItem!!.pass)
+            Toast.makeText(activity, "Copy pass!", Toast.LENGTH_SHORT).show()
+        }
         return binding.root
     }
 }

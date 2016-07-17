@@ -55,6 +55,7 @@
             />
 
         <TextView
+            android:id="@+id/user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{item.user}"
@@ -69,6 +70,7 @@
             />
 
         <TextView
+            android:id="@+id/pass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{item.pass}"
